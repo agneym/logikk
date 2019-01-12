@@ -2,6 +2,7 @@ import React from "react";
 import * as acorn from "acorn";
 import walkTree from "./utils/walkTree";
 import createMatrix from "./utils/createMatrix";
+import identifyResults from "./utils/identifyResults";
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -18,9 +19,12 @@ class Evaluator extends React.Component {
   parseExpression = () => {
     const { expression } = this.props;
     try {
-      const node = acorn.parse(expression).body[0];
+      const ast = acorn.parse(expression);
+      const node = ast.body[0];
       const identifiers = walkTree(node);
       const matrix = createMatrix(identifiers.length);
+      const expressions = identifyResults(ast, matrix);
+      console.log(expressions);
       this.setState({
         identifiers,
         matrix
