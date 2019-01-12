@@ -1,23 +1,31 @@
 import React, { Component } from "react";
 
 import Field from "./Field";
+import Evaluator from "./Evaluator";
 
 class Content extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expression: ""
+      expression: "",
+      evaluate: false
     };
   }
   onChangeExpression = event => {
     const expression = event.target.value;
     this.setState({
-      expression
+      expression,
+      evaluate: false
     });
   };
-  onVisualise = () => {};
+  onVisualise = event => {
+    event.preventDefault();
+    this.setState({
+      evaluate: true
+    });
+  };
   render() {
-    const { expression } = this.state;
+    const { expression, evaluate } = this.state;
     return (
       <main className="section">
         <div className="container">
@@ -27,6 +35,9 @@ class Content extends Component {
             onSubmit={this.onVisualise}
           />
         </div>
+        <section className="section">
+          {evaluate && <Evaluator expression={expression} key={expression} />}
+        </section>
       </main>
     );
   }

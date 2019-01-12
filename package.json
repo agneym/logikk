@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "acorn": "^6.0.5",
+    "acorn-loose": "^6.0.0",
     "bulma": "^0.7.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

@@ -1,14 +1,16 @@
 import React from "react";
 
-function Field() {
+function Field({ expression, onChange, onSubmit }) {
   return (
-    <form className="level">
+    <form className="level" onSubmit={onSubmit}>
       <div className="field level-item">
         <div className="control">
           <input
             className="input is-info"
             type="text"
             placeholder="Info input"
+            value={expression}
+            onChange={onChange}
           />
         </div>
       </div>
