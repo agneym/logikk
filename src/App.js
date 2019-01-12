@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "bulma/css/bulma.css";
 
 import Content from "./Content";
 import "./App.css";
