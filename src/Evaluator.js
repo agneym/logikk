@@ -24,10 +24,13 @@ class Evaluator extends React.Component {
       const identifiers = walkTree(node);
       const matrix = createMatrix(identifiers.length);
       const expressions = identifyResults(ast, matrix);
-      console.log(expressions);
+      const answerMatrix = matrix.map((row, index) => {
+        row.push(eval(expressions[index]));
+        return row;
+      });
       this.setState({
         identifiers,
-        matrix
+        matrix: answerMatrix
       });
     } catch (err) {
       this.setState({
@@ -42,8 +45,9 @@ class Evaluator extends React.Component {
         <thead>
           <tr>
             {identifiers.map((identifier, index) => (
-              <td key={index + identifier}>{identifier}</td>
+              <th key={index + identifier}>{identifier}</th>
             ))}
+            <td>Result</td>
           </tr>
         </thead>
         <tbody>
