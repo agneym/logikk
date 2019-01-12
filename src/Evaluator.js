@@ -1,6 +1,6 @@
 import React from "react";
 import * as acorn from "acorn";
-import walkTree from "./walkTree";
+import walkTree from "./utils/walkTree";
 
 class Evaluator extends React.Component {
   constructor(props) {
