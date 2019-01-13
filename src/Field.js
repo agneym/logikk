@@ -1,23 +1,23 @@
 import React from "react";
-import styled from "styled-components";
-
-const Input = styled.input``;
 
 function Field({ expression, onChange, onSubmit }) {
   return (
-    <form onSubmit={onSubmit}>
+    <form className="uk-form-blank" onSubmit={onSubmit}>
       <div>
         <div>
           <input
+            className="uk-input uk-margin"
             type="text"
-            placeholder="Info input"
+            placeholder="Enter Expression here"
             value={expression}
             onChange={onChange}
           />
         </div>
       </div>
       <div>
-        <button>Visualise</button>
+        <button className="uk-button uk-button-danger uk-margin-auto uk-display-block uk-box-shadow-small">
+          Visualise
+        </button>
       </div>
     </form>
   );

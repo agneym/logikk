@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import Field from "./Field";
 import Evaluator from "./Evaluator";
+import Header from "./Header";
 
 class Content extends Component {
   constructor(props) {
@@ -27,8 +28,9 @@ class Content extends Component {
   render() {
     const { expression, evaluate } = this.state;
     return (
-      <main className="section">
-        <div className="container">
+      <main className="uk-section">
+        <Header />
+        <div className="uk-container">
           <Field
             expression={expression}
             onChange={this.onChangeExpression}
