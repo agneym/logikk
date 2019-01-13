@@ -2,7 +2,6 @@ import React from "react";
 
 function Selector({ name, value, onChange }) {
   const handler = event => onChange(name, event.target.value);
-  console.log(name, value);
   return (
     <td>
       <div className="uk-form-controls uk-form-controls-text">

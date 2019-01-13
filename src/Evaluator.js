@@ -6,6 +6,7 @@ import createMatrix from "./utils/createMatrix";
 import identifyResults from "./utils/identifyResults";
 import createSelectors from "./utils/createSelectors";
 import Selector from "./Selector";
+import createFilter from "./utils/createFilter";
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -48,12 +49,20 @@ class Evaluator extends React.Component {
     }
   };
   changeSelector = (name, value) => {
-    this.setState(prevState => ({
-      selectors: {
-        ...prevState.selectors,
-        [name]: value
+    this.setState(
+      prevState => ({
+        selectors: {
+          ...prevState.selectors,
+          [name]: value
+        }
+      }),
+      () => {
+        const matrix = createFilter(this.state.selectors, this.originalMatrix);
+        this.setState({
+          matrix
+        });
       }
-    }));
+    );
   };
   render() {
     const { identifiers, matrix, selectors } = this.state;
