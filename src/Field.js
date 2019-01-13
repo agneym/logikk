@@ -1,5 +1,4 @@
 import React from "react";
-import UIKit from "uikit";
 
 class Field extends React.Component {
   constructor(props) {
