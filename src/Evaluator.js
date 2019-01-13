@@ -20,11 +20,11 @@ class Evaluator extends React.Component {
     const { expression } = this.props;
     try {
       const ast = acorn.parse(expression);
-      const node = ast.body[0];
-      const identifiers = walkTree(node);
+      const identifiers = walkTree(ast.body[0]);
       const matrix = createMatrix(identifiers.length);
       const expressions = identifyResults(ast, matrix);
       const answerMatrix = matrix.map((row, index) => {
+        // eslint-disable-next-line no-eval
         row.push(eval(expressions[index]));
         return row;
       });
