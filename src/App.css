@@ -5,6 +5,17 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.App {
+  position: relative;
+  min-height: 100vh;
+}
+
+.App::after {
+  content: "";
+  display: block;
+  height: 4rem; /* Set same as footer's height */
+}
+
 h1,
 h2,
 h3,
@@ -43,4 +54,16 @@ h4 {
 .result-table th,
 .result-table td {
   min-width: 172px;
+}
+
+.main-container {
+  padding-bottom: 0 !important;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4rem;
+  padding: 1rem 2rem;
 }

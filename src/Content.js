@@ -28,7 +28,7 @@ class Content extends Component {
   render() {
     const { expression, evaluate } = this.state;
     return (
-      <main className="uk-section">
+      <main className="uk-section main-container">
         <Header />
         <div className="uk-container">
           <Field
