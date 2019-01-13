@@ -11,3 +11,23 @@ h3,
 h4 {
   font-family: "Thasadith", sans-serif;
 }
+
+.result-table {
+  margin: 0 2rem;
+}
+
+.button-primary {
+  color: #ffffff;
+  background: #1fa2ff; /* fallback for old browsers */
+  background-image: linear-gradient(
+    to right,
+    #1fa2ff 0%,
+    #12d8fa 51%,
+    #1fa2ff 100%
+  );
+  transition: background-position 300ms ease-in;
+}
+
+.button-primary:hover {
+  background-position: right center;
+}

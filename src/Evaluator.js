@@ -41,25 +41,31 @@ class Evaluator extends React.Component {
   render() {
     const { identifiers, matrix } = this.state;
     return (
-      <table>
-        <thead>
-          <tr>
-            {identifiers.map((identifier, index) => (
-              <th key={index + identifier}>{identifier}</th>
-            ))}
-            <td>Result</td>
-          </tr>
-        </thead>
-        <tbody>
-          {matrix.map(row => (
+      <div className="uk-overflow-auto result-table">
+        <table className="uk-table uk-table-hover uk-table-middle uk-text-center">
+          <thead>
             <tr>
-              {row.map(value => (
-                <td>{Boolean(value).toString()}</td>
+              {identifiers.map((identifier, index) => (
+                <th className="uk-text-center" key={index + identifier}>
+                  {identifier}
+                </th>
               ))}
+              <td className="uk-text-bold uk-text-primary uk-text-center">
+                RESULT
+              </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {matrix.map(row => (
+              <tr>
+                {row.map(value => (
+                  <td>{Boolean(value).toString()}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

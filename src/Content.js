@@ -37,7 +37,7 @@ class Content extends Component {
             onSubmit={this.onVisualise}
           />
         </div>
-        <section className="section">
+        <section className="uk-section">
           {evaluate && <Evaluator expression={expression} key={expression} />}
         </section>
       </main>
