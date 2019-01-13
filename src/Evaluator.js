@@ -35,7 +35,7 @@ class Evaluator extends React.Component {
       });
       const selectors = createSelectors(identifiers);
       this.originalMatrix = answerMatrix;
-      console.log(selectors);
+
       this.setState({
         identifiers,
         matrix: answerMatrix,
@@ -46,6 +46,14 @@ class Evaluator extends React.Component {
         error: err
       });
     }
+  };
+  changeSelector = (name, value) => {
+    this.setState(prevState => ({
+      selectors: {
+        ...prevState.selectors,
+        [name]: value
+      }
+    }));
   };
   render() {
     const { identifiers, matrix, selectors } = this.state;
@@ -71,7 +79,12 @@ class Evaluator extends React.Component {
                 .map((a, index) => {
                   const id = `${identifiers[index] || "result"}-${index}`;
                   return (
-                    <Selector key={index} name={id} value={selectors[id]} />
+                    <Selector
+                      key={index}
+                      name={id}
+                      value={selectors[id]}
+                      onChange={this.changeSelector}
+                    />
                   );
                 })}
             </tr>

@@ -1,6 +1,8 @@
 import React from "react";
 
-function Selector({ name, value }) {
+function Selector({ name, value, onChange }) {
+  const handler = event => onChange(name, event.target.value);
+  console.log(name, value);
   return (
     <td>
       <div className="uk-form-controls uk-form-controls-text">
@@ -11,6 +13,7 @@ function Selector({ name, value }) {
             name={name}
             value="correct"
             checked={value === "correct"}
+            onChange={handler}
           />
           ✔
         </label>
@@ -21,6 +24,7 @@ function Selector({ name, value }) {
             name={name}
             value="wrong"
             checked={value === "wrong"}
+            onChange={handler}
           />
           ✘
         </label>
@@ -31,6 +35,7 @@ function Selector({ name, value }) {
             name={name}
             value="all"
             checked={value === "all"}
+            onChange={handler}
           />
           All
         </label>
