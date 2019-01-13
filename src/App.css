@@ -31,3 +31,16 @@ h4 {
 .button-primary:hover {
   background-position: right center;
 }
+
+.radio-button {
+  margin: 0 0.3rem;
+}
+
+.radio-button > input {
+  margin: 0 0.2rem;
+}
+
+.result-table th,
+.result-table td {
+  min-width: 172px;
+}

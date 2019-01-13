@@ -1,8 +1,10 @@
 import React from "react";
 import * as acorn from "acorn";
+
 import walkTree from "./utils/walkTree";
 import createMatrix from "./utils/createMatrix";
 import identifyResults from "./utils/identifyResults";
+import Selector from "./Selector";
 
 class Evaluator extends React.Component {
   constructor(props) {
@@ -56,6 +58,11 @@ class Evaluator extends React.Component {
             </tr>
           </thead>
           <tbody>
+            {new Array(matrix[0] ? matrix[0].length : 0)
+              .fill(1)
+              .map((a, index) => (
+                <Selector name={`${identifiers[index] || "result"}-${index}`} />
+              ))}
             {matrix.map(row => (
               <tr>
                 {row.map(value => (
