@@ -1,12 +1,14 @@
 import React from "react";
+import styled from "styled-components";
+
+const Input = styled.input``;
 
 function Field({ expression, onChange, onSubmit }) {
   return (
-    <form className="level" onSubmit={onSubmit}>
-      <div className="field level-item">
-        <div className="control">
+    <form onSubmit={onSubmit}>
+      <div>
+        <div>
           <input
-            className="input is-info"
             type="text"
             placeholder="Info input"
             value={expression}
@@ -14,8 +16,8 @@ function Field({ expression, onChange, onSubmit }) {
           />
         </div>
       </div>
-      <div className="field level-item">
-        <button className="button is-primary">Visualise</button>
+      <div>
+        <button>Visualise</button>
       </div>
     </form>
   );
