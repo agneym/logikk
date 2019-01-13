@@ -60,6 +60,13 @@ h4 {
   padding-bottom: 0 !important;
 }
 
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

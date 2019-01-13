@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import * as acorn from "acorn";
 
 import walkTree from "./utils/walkTree";
@@ -15,7 +15,8 @@ class Evaluator extends React.Component {
       identifiers: [],
       error: "",
       matrix: [],
-      selectors: {}
+      selectors: {},
+      representation: "bool"
     };
     this.originalMatrix = [];
   }
@@ -64,49 +65,81 @@ class Evaluator extends React.Component {
       }
     );
   };
+  changeRep = event => {
+    const value = event.target.value;
+    this.setState({
+      representation: value
+    });
+  };
+  renderRep(value) {
+    const { representation } = this.state;
+    switch (representation) {
+      case "bool": {
+        return Boolean(value).toString();
+      }
+      case "icon": {
+        return Boolean(value) ? "✔" : "✘";
+      }
+      default: {
+        return Boolean(value).toString();
+      }
+    }
+  }
   render() {
-    const { identifiers, matrix, selectors } = this.state;
+    const { identifiers, matrix, selectors, representation } = this.state;
     return (
-      <div className="uk-overflow-auto result-table">
-        <table className="uk-table uk-table-hover uk-table-middle uk-text-center">
-          <thead>
-            <tr>
-              {identifiers.map((identifier, index) => (
-                <th className="uk-text-center" key={index + identifier}>
-                  {identifier}
-                </th>
-              ))}
-              <td className="uk-text-bold uk-text-primary uk-text-center">
-                RESULT
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {new Array(matrix[0] ? matrix[0].length : 0)
-                .fill(1)
-                .map((a, index) => {
-                  const id = `${identifiers[index] || "result"}-${index}`;
-                  return (
-                    <Selector
-                      key={index}
-                      name={id}
-                      value={selectors[id]}
-                      onChange={this.changeSelector}
-                    />
-                  );
-                })}
-            </tr>
-            {matrix.map((row, index) => (
-              <tr key={index}>
-                {row.map((value, index) => (
-                  <td key={index}>{Boolean(value).toString()}</td>
+      <Fragment>
+        <div className="uk-flex uk-flex-right uk-margin-right uk-margin-bottom">
+          <select
+            className="uk-select uk-form-small uk-form-width-small"
+            value={representation}
+            onChange={this.changeRep}
+          >
+            <option value="bool">Boolean</option>
+            <option value="icon">Icons</option>
+          </select>
+        </div>
+        <div className="uk-overflow-auto result-table">
+          <table className="uk-table uk-table-hover uk-table-middle uk-text-center">
+            <thead>
+              <tr>
+                {identifiers.map((identifier, index) => (
+                  <th className="uk-text-center" key={index + identifier}>
+                    {identifier}
+                  </th>
                 ))}
+                <td className="uk-text-bold uk-text-primary uk-text-center">
+                  RESULT
+                </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              <tr>
+                {new Array(matrix[0] ? matrix[0].length : 0)
+                  .fill(1)
+                  .map((a, index) => {
+                    const id = `${identifiers[index] || "result"}-${index}`;
+                    return (
+                      <Selector
+                        key={index}
+                        name={id}
+                        value={selectors[id]}
+                        onChange={this.changeSelector}
+                      />
+                    );
+                  })}
+              </tr>
+              {matrix.map((row, index) => (
+                <tr key={index}>
+                  {row.map((value, index) => (
+                    <td key={index}>{this.renderRep(value)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Fragment>
     );
   }
 }

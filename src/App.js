@@ -9,6 +9,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <a href="https://github.com/BoyWithSilverWings">
+          <img
+            className="ribbon"
+            src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
+            alt="Fork me on GitHub"
+          />
+        </a>
         <Content />
         <Footer />
       </div>
