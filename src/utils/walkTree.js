@@ -1,6 +1,6 @@
 function traverse(node, acc) {
   if (node.type === "Identifier") {
-    acc.push(node.name);
+    acc.add(node.name);
   } else if (node.type === "UnaryExpression") {
     traverse(node.argument, acc);
   } else {
@@ -11,14 +11,14 @@ function traverse(node, acc) {
       traverse(node.right, acc);
     }
   }
-  return acc;
+  return [...acc];
 }
 
 function walkTree(node) {
   if (node.type !== "ExpressionStatement") {
     throw new Error("Expression is not valid!");
   }
-  const identifiers = traverse(node.expression, []);
+  const identifiers = traverse(node.expression, new Set());
   return identifiers;
 }
 

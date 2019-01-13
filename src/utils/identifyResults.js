@@ -1,13 +1,14 @@
 import { generate } from "astring";
 import { cloneDeep } from "lodash";
 
-function traverseTree(values) {
+function traverseTree(values, identifiers) {
   return function traverse(node, acc = []) {
     if (node.type === "Identifier") {
       node.type = "Literal";
       const numOfCharacters = node.end - node.start;
-      const value = values[acc.length].toString().padStart(numOfCharacters);
-      node.value = values[acc.length];
+      const identifier = identifiers.indexOf(node.name);
+      const value = values[identifier].toString().padStart(numOfCharacters);
+      node.value = values[identifier];
       node.raw = value;
       acc.push(node.name);
     } else if (node.type === "UnaryExpression") {
@@ -24,10 +25,10 @@ function traverseTree(values) {
   };
 }
 
-function identifyResults(ast, values) {
+function identifyResults(ast, identifiers, values) {
   return values.map(value => {
     const astClone = cloneDeep(ast);
-    traverseTree(value)(astClone.body[0].expression, []);
+    traverseTree(value, identifiers)(astClone.body[0].expression, []);
     return generate(astClone);
   });
 }

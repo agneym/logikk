@@ -29,7 +29,7 @@ class Evaluator extends React.Component {
       const ast = acorn.parse(expression);
       const identifiers = walkTree(ast.body[0]);
       const matrix = createMatrix(identifiers.length);
-      const expressions = identifyResults(ast, matrix);
+      const expressions = identifyResults(ast, identifiers, matrix);
       const answerMatrix = matrix.map((row, index) => {
         // eslint-disable-next-line no-eval
         row.push(eval(expressions[index]));
