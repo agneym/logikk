@@ -4,6 +4,7 @@ import * as acorn from "acorn";
 import walkTree from "./utils/walkTree";
 import createMatrix from "./utils/createMatrix";
 import identifyResults from "./utils/identifyResults";
+import createSelectors from "./utils/createSelectors";
 import Selector from "./Selector";
 
 class Evaluator extends React.Component {
@@ -12,8 +13,10 @@ class Evaluator extends React.Component {
     this.state = {
       identifiers: [],
       error: "",
-      matrix: []
+      matrix: [],
+      selectors: {}
     };
+    this.originalMatrix = [];
   }
   componentDidMount() {
     this.parseExpression();
@@ -30,9 +33,13 @@ class Evaluator extends React.Component {
         row.push(eval(expressions[index]));
         return row;
       });
+      const selectors = createSelectors(identifiers);
+      this.originalMatrix = answerMatrix;
+      console.log(selectors);
       this.setState({
         identifiers,
-        matrix: answerMatrix
+        matrix: answerMatrix,
+        selectors
       });
     } catch (err) {
       this.setState({
@@ -41,7 +48,7 @@ class Evaluator extends React.Component {
     }
   };
   render() {
-    const { identifiers, matrix } = this.state;
+    const { identifiers, matrix, selectors } = this.state;
     return (
       <div className="uk-overflow-auto result-table">
         <table className="uk-table uk-table-hover uk-table-middle uk-text-center">
@@ -58,15 +65,20 @@ class Evaluator extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {new Array(matrix[0] ? matrix[0].length : 0)
-              .fill(1)
-              .map((a, index) => (
-                <Selector name={`${identifiers[index] || "result"}-${index}`} />
-              ))}
-            {matrix.map(row => (
-              <tr>
-                {row.map(value => (
-                  <td>{Boolean(value).toString()}</td>
+            <tr>
+              {new Array(matrix[0] ? matrix[0].length : 0)
+                .fill(1)
+                .map((a, index) => {
+                  const id = `${identifiers[index] || "result"}-${index}`;
+                  return (
+                    <Selector key={index} name={id} value={selectors[id]} />
+                  );
+                })}
+            </tr>
+            {matrix.map((row, index) => (
+              <tr key={index}>
+                {row.map((value, index) => (
+                  <td key={index}>{Boolean(value).toString()}</td>
                 ))}
               </tr>
             ))}
