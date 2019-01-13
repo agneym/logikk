@@ -93,6 +93,18 @@ class Evaluator extends React.Component {
         <sub>
           For eg: <pre className="uk-width-1-4 uk-margin-auto">a&&b</pre>
         </sub>
+        <p className="uk-text-small">
+          <span>If you think this is a bug, please file an &nbsp;</span>
+          <a
+            href={`https://github.com/BoyWithSilverWings/logikk/issues/new?&body=${
+              this.state.error
+            }`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Issue
+          </a>
+        </p>
       </div>
     );
   }
