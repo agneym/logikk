@@ -19,8 +19,7 @@ class Content extends Component {
       evaluate: false
     });
   };
-  onVisualise = event => {
-    event.preventDefault();
+  onVisualise = () => {
     this.setState({
       evaluate: true
     });
