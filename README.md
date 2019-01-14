@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.png" height="50" />
+  <img src="public/logo.png" height="50" />
   <h1>Logikk</h1>
   <p>Logical Expression Evaluator</p>
 </div>
@@ -8,9 +8,7 @@
 
 Logical Expressions with `&&` and `||` sometimes escaped me.
 
-
 <img src="https://i.imgur.com/kGYkFKi.gif" align="center" />
-
 
 This is a visualiser with which I can easily figure out what is happening. I hope it can help you too.
 
