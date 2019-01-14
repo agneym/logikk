@@ -6,7 +6,7 @@
 
 ## Why?
 
-Logical Expressions with `&&` and `||` sometimes escaped me.
+Logical Expressions with `&&`, `||`, `!` sometimes escaped me.
 
 <img src="https://i.imgur.com/kGYkFKi.gif" align="center" />
 
