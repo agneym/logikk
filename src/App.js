@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <a
-          href="https://github.com/BoyWithSilverWings"
+          href="https://github.com/BoyWithSilverWings/logikk"
           className="uk-visible@m"
         >
           <img
