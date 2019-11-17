@@ -6,7 +6,7 @@
 
 ## Why?
 
-Logical Expressions with `&&`, `||`, `!` sometimes escaped me.
+Logical Expressions with `&&`, `||`, `!` sometimes escape me.
 
 <img src="https://i.imgur.com/kGYkFKi.gif" align="center" />
 
@@ -20,7 +20,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - [AcornJS](https://github.com/acornjs/acorn) - Converting expression into AST
 - [Astring](https://github.com/davidbonnet/astring) - Converting AST to expression
-- [UIKit](https://getuikit.com/) - So little custom styles.
+- [UIKit](https://getuikit.com/) - For the little custom styles.
 - [React](https://reactjs.org) - Obviously.
 
 <a href="https://www.netlify.com">
